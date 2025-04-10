@@ -1,6 +1,9 @@
 // lib/auth.ts
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { DrizzleAdapter } from "@auth/drizzle-adapter"
+import { database } from "@/src/db/database"
+import { accounts, sessions, users, verificationTokens } from "./db/schema";
 
 function getGoogleCredentials() {
   const clientId = process.env.AUTH_GOOGLE_ID;
@@ -18,6 +21,12 @@ function getGoogleCredentials() {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  adapter: DrizzleAdapter(database, {
+    usersTable: users,
+    accountsTable: accounts,
+    sessionsTable: sessions,
+    verificationTokensTable: verificationTokens,
+  }),
   providers: [
     GoogleProvider({
       clientId: getGoogleCredentials().clientId,
