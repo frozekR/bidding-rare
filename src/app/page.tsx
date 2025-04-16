@@ -19,13 +19,11 @@ export default async function HomePage() {
   if (!user) return null;
 
   return (
-  <main className="container mx-auto py-12">
-    
-    { session ? <SignOut /> : <SignIn/> }   
-
-    { session?.user?.name}
+  <main className="container mx-auto py-12 space-y-4">
+    <h1 className="text-4xl font-bold">Выложите ваш предмет на аукцион</h1>
 
     <form
+    className="flex flex-col border p-8 rounded-xl space-y space-y-4 max-w-lg"
     action={async (formData: FormData) => {
       'use server';
       // sconst bid = formData.get('bid') as string;
@@ -36,13 +34,16 @@ export default async function HomePage() {
       revalidatePath("/");
     }}>
       
-      <Input name="name" placeholder="Name your item" />
-      <Button type="submit">Post item</Button>
+      <Input className="max-w-md" name="name" placeholder="Name your item" />
+      <Button className="self-end" type="submit">Post item</Button>
     </form>
 
-    {allItems.map((item) => (
-      <div key={item.id}>{item.id}</div>
-    ))}
+    <h2 className="text-2xl font-bold">Выставленные предметы</h2>
+    <div className="grid grid-cols-4 gap-4">
+      {allItems.map((item) => (
+        <div key={item.id} className="border p-8 rounded-xl">{item.name}</div>
+      ))}
+    </div>
   </main>
   )
 }
