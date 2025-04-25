@@ -12,9 +12,17 @@ export async function Header() {
                 <a className="flex items-center gap-2 py-2" href="/">
                     OldAuction.ru
                 </a>
-                <div>
+                <div className="flex items-center gap-8">
                     <a href="/bids/create">
-                        Auction Item
+                        Create Auction
+                    </a>
+
+                    <a href="/">
+                        All Auctions
+                    </a>
+
+                    <a href="/auctions">
+                        My Auctions
                     </a>
                 </div>
                 <div className="flex items-center gap-2">

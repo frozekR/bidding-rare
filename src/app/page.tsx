@@ -1,10 +1,4 @@
-import { Button } from "@/src/components/ui/button";
 import { database } from "../db/database";
-import { bids as bidsSchema, items } from "../db/schema";
-import { Input } from "../components/ui/input";
-import { revalidatePath } from "next/cache";
-import SignIn from "../components/sign-in";
-import { SignOut } from "../components/sign-out";
 import { auth } from "@/src/auth"
 import { ItemCard } from "./item-card";
 
