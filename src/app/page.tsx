@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import SignIn from "../components/sign-in";
 import { SignOut } from "../components/sign-out";
 import { auth } from "@/src/auth"
+import { ItemCard } from "./item-card";
 
 export default async function HomePage() { 
   const session = await auth();
@@ -23,12 +24,7 @@ export default async function HomePage() {
 
     <h2 className="text-2xl font-bold">Выставленные предметы</h2>
     <div className="grid grid-cols-4 gap-4">
-      {allItems.map((item) => (
-        <div key={item.id} className="border p-8 rounded-xl">
-          {item.name} <br></br>
-          Начальная стоимость: {item.startingPrice} рублей
-        </div>
-      ))}
+      {allItems.map((item) => (<ItemCard key={item.id} item={item}></ItemCard>))}
     </div>
   </main>
   )

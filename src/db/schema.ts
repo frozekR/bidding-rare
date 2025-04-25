@@ -94,3 +94,5 @@ export const items = pgTable("br_item", {
   name: text("name").notNull(),
   startingPrice: integer("startingPrice").notNull().default(0),
 })
+
+export type Item = typeof items.$inferSelect;
