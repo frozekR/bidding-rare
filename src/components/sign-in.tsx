@@ -10,7 +10,7 @@ export default function SignIn() {
         await signIn("google", { redirectTo: "/" });
       }}
     >
-      <Button type="submit">Sign in with Google</Button>
+      <Button type="submit">Войдите при помощи Google</Button>
     </form>
   );
 }

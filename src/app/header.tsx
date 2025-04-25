@@ -8,14 +8,18 @@ export async function Header() {
 
     return (
         <div className="bg-gray-200 py-4">
-            <div className="container flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                    { <Image src="/logo.png" width="50" height="50" alt="Logo" /> }
-                    Ono.com
-                </div>
+            <div className="container flex justify-around items-center">
+                <a className="flex items-center gap-2 py-2" href="/">
+                    OldAuction.ru
+                </a>
                 <div>
-                    <div>{ session ? <SignOut /> : <SignIn /> }</div>
+                    <a href="/bids/create">
+                        Auction Item
+                    </a>
+                </div>
+                <div className="flex items-center gap-2">
                     <div>{ session?.user?.name }</div>
+                    <div>{ session ? <SignOut /> : <SignIn /> }</div>
                 </div>
             </div>
         </div>
