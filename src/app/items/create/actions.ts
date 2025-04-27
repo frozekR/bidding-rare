@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache";
 import { database } from "@/src/db/database";
 import { items } from "@/src/db/schema";
 import { auth } from "@/src/auth";
-import { redirect } from "next/dist/server/api-utils";
 
 export async function createItemAction(formData: FormData) {
     const session = await auth();

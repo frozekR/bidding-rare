@@ -13,7 +13,7 @@ export async function Header() {
                     OldAuction.ru
                 </a>
                 <div className="flex items-center gap-8">
-                    <a href="/bids/create">
+                    <a href="/items/create">
                         Create Auction
                     </a>
 
