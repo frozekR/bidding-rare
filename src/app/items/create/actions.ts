@@ -22,6 +22,7 @@ export async function createItemAction(formData: FormData) {
     await database.insert(items).values({
         name: formData.get("name") as string,
         startingPrice: Number(formData.get("startingPrice")),
+        currentBid: Number(formData.get("startingPrice")),
         userId: user.id!,
         });
     revalidatePath("/");

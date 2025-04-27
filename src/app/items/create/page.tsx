@@ -14,6 +14,8 @@ export default async function CreatePage() {
       
       <Input className="max-w-md" name="name" placeholder="Name your item" />
       <Input className="max-w-md" name="startingPrice" type="number" placeholder="Какова минимальная стоимость?"/>
+      <Input className="max-w-md" name="description" placeholder="Описание" />
+      <Input className="max-w-md" name="bidInterval" type="number" placeholder="Шаг ставки" />
       <Button className="self-end" type="submit">Post item</Button>
     </form>
   </main>
