@@ -1,11 +1,12 @@
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { createItemAction } from "./actions";
+import { pageTitleStyles } from "@/src/styles";
 
 export default async function CreatePage() { 
   return (
-  <main className="container mx-auto py-12 space-y-4">
-    <h1 className="text-4xl font-bold">Выложите ваш предмет на аукцион</h1>
+  <main className="space-y-8">
+    <h1 className={pageTitleStyles}>Выложите ваш предмет на аукцион</h1>
 
     <form
     className="flex flex-col border p-8 rounded-xl space-y space-y-4 max-w-lg"

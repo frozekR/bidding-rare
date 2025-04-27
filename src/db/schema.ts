@@ -1,3 +1,4 @@
+import { desc } from "drizzle-orm"
 import { boolean, integer, pgTable, primaryKey, serial, text, timestamp } from "drizzle-orm/pg-core"
 import { AdapterAccountType } from "next-auth/adapters"
 
@@ -83,16 +84,27 @@ export const users = pgTable("br_user", {
       },
     ]
   )
-  
-export const bids = pgTable("br_bids", {
-    id: serial("id").primaryKey(),
-})
 
 export const items = pgTable("br_item", {
   id: serial("id").primaryKey(),
-  userId: text("userId").notNull().references(() => users.id, { onDelete: "cascade"}),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade"}),
   name: text("name").notNull(),
   startingPrice: integer("startingPrice").notNull().default(0),
+  bidInterval: integer("bidInterval").notNull().default(10),
+  description: text("description").notNull(),
 })
 
+export const bids = pgTable("br_bids", {
+  id: serial("id").primaryKey(),
+  amount: integer("amount").notNull(),
+  itemId: integer("itemId")
+    .notNull()
+    .references(() => items.id, { onDelete: "cascade"}),
+  userId: text("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade"}),
+})
+ 
 export type Item = typeof items.$inferSelect;
