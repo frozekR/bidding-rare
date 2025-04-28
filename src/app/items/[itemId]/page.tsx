@@ -70,17 +70,13 @@ export default async function ItemPage(props: {
         <ul className="space-y-1">
         {allBids.map((bid) => {
           return (
-            <div>
-            <div>
             <li key={bid.id} className="bg-gray-100 p-4 rounded-xl">
-              <div>
-                <span className="font-bold">{bid.amount} рублей</span> от{" "}
-                <span className="font-bold">{bid.user.name}</span>
-                <span className="text-gray-500"> {bid.timestamp.toLocaleString()}</span>
-              </div>
+            <div>
+              <span className="font-bold">{bid.amount} рублей</span> от{" "}
+              <span className="font-bold">{bid.user.name}</span>
+              <span className="text-gray-500"> {bid.timestamp.toLocaleString()}</span>
+            </div>
             </li>
-            </div>
-            </div>
           );
         })}
       </ul>

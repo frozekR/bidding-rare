@@ -1,7 +1,7 @@
 import { signOut } from "@/src/auth"
 import { Button } from "./ui/button"
  
-export function SignOut() {
+export function SignOut(p0: { callbackUrl: string }) {
   return (
     <form
       action={async () => {
