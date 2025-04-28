@@ -95,6 +95,7 @@ export const items = pgTable("br_item", {
   currentBid: integer("currentBid").notNull().default(0),
   bidInterval: integer("bidInterval").notNull().default(100),
   description: text("description").notNull().default("Описание отсутствует"),
+  endDate: timestamp("endDate", { mode: "date" }).notNull(),
 })
 
 export const bids = pgTable("br_bids", {

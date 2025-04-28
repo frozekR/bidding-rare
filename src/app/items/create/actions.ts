@@ -5,26 +5,40 @@ import { database } from "@/src/db/database";
 import { items } from "@/src/db/schema";
 import { auth } from "@/src/auth";
 
-export async function createItemAction(formData: FormData) {
+export async function createItemAction({
+    name,
+    startingPrice,
+    bidInterval,
+    description,
+    endDate,
+  }: {
+    name: string;
+    startingPrice: number;
+    bidInterval: number;
+    description: string;
+    endDate: Date;
+  }) {
     const session = await auth();
-
+  
     if (!session) {
-        throw new Error("не авторизован");
+      throw new Error("Unauthorized");
     }
-
+  
     const user = session.user;
-
-    if (!user) {
-        throw new Error("не авторизован");
+  
+    if (!user || !user.id) {
+      throw new Error("Unauthorized");
     }
-    
-    // sconst bid = formData.get('bid') as string;
+  
     await database.insert(items).values({
-        name: formData.get("name") as string,
-        startingPrice: Number(formData.get("startingPrice")),
-        currentBid: Number(formData.get("startingPrice")),
-        userId: user.id!,
-        });
+      name,
+      startingPrice,
+      currentBid: startingPrice,
+      description,
+      bidInterval,
+      userId: user.id,
+      endDate,
+    });
+  
     revalidatePath("/");
-
-}
+  }
