@@ -6,11 +6,14 @@ import Link from "next/link";
 import { createBidAction } from "./actions";
 import { getBidsforItem } from "../../data-access/bids";
 import { getItem } from "../../data-access/items";
+import { auth } from "@/src/auth";
+import { isBidOver } from "@/src/lib/utils";
 
 export default async function ItemPage(props: {
   params: Promise<{ itemId: string }>;
 }) {
   // 1) await the promise
+  const session = await auth();
   const { itemId } = await props.params;
 
   const item = await getItem(parseInt(itemId));
@@ -33,6 +36,8 @@ export default async function ItemPage(props: {
   const allBids = await getBidsforItem(parseInt(item.id.toString()));
   
   const hasBids = allBids.length > 0;
+
+  const canPlaceBid = !isBidOver(item);
 
   return (
   <main className="space-y-8">
@@ -60,10 +65,12 @@ export default async function ItemPage(props: {
         <h2 className="text-2xl font-bold mb-4">
           Текущие ставки
         </h2>
-        <form action={createBidAction}>
+        {canPlaceBid && (
+            <form action={createBidAction}>
               <input type="hidden" name="itemId" value={item.id} />
               <Button type="submit">Сделать ставку</Button>
-        </form>
+            </form>
+        )}
         </div>
       
       { hasBids ? (
@@ -83,10 +90,12 @@ export default async function ItemPage(props: {
       ) : (
         <div className="bg-gray-100 space-y-4 flex flex-col items-center justify-center h-full">
           <p className="text-gray-500">Ставок пока нет</p>
-          <form action={createBidAction}>
-            <input type="hidden" name="itemId" value={item.id} />
-            <Button type="submit">Сделать ставку</Button>
-          </form>
+          {canPlaceBid && (
+            <form action={createBidAction}>
+              <input type="hidden" name="itemId" value={item.id} />
+              <Button type="submit">Сделать ставку</Button>
+            </form>
+          )}
         </div>
       )
       }

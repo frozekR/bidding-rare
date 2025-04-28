@@ -1,9 +1,9 @@
 'use server'
 
-import { revalidatePath } from "next/cache";
 import { database } from "@/src/db/database";
 import { items } from "@/src/db/schema";
 import { auth } from "@/src/auth";
+import { redirect } from "next/navigation";
 
 export async function createItemAction({
     name,
@@ -40,5 +40,5 @@ export async function createItemAction({
       endDate,
     });
   
-    revalidatePath("/");
+    redirect("/");
   }
