@@ -81,6 +81,7 @@ export default async function ItemPage(props: {
             <div>
               <span className="font-bold">{bid.amount} рублей</span> от{" "}
               <span className="font-bold">{bid.user.name}</span>
+              <span className="font-thin">{bid.userId}</span>
               <span className="text-gray-500"> {bid.timestamp.toLocaleString()}</span>
             </div>
             </li>

@@ -9,7 +9,7 @@ export function ItemCard({item}: {item: Item}) {
     const bidOver = isBidOver(item);
 
     return (    
-        <div key={item.id} className="border p-8 rounded-xl">
+        <div key={item.id} className="border p-12 rounded-xl">
           <h2 className={pageTitleStyles}> {item.name} </h2>
           <br></br>
           <p className="text-l"> Начальная стоимость: {item.startingPrice} рублей </p>
